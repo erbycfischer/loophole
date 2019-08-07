@@ -30,7 +30,7 @@ const screens = createStackNavigator({
       borderBottomColor: "transparent",
       elevation: 0, // for android
     },
-    headerBackImage: <Image source={require('/Users/admin/Desktop/loophole/loophole_frontend/loophole_frontend/assets/icons/back.png')} />,
+    headerBackImage: <Image source={require('/Users/admin/Desktop/loophole/loophole_frontend/assets/icons/back.png')} />,
     headerBackTitle: null,
     headerLeftContainerStyle: {
       alignItems: 'center',
