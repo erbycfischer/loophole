@@ -4,38 +4,30 @@ import { ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } from 'r
 import { Button, Block, Input, Text } from '../components';
 import { theme } from '../constants';
 
-const VALID_EMAIL = "contact@react-ui-kit.com";
-const VALID_PASSWORD = "subscribe";
-
 export default class Login extends Component {
   state = {
-    email: VALID_EMAIL,
-    password: VALID_PASSWORD,
-    errors: [],
-    loading: false,
+    email: "",
+    password: "",
+    errors: []
   }
 
   handleLogin() {
-    const { navigation } = this.props;
     const { email, password } = this.state;
-    const errors = [];
 
-    Keyboard.dismiss();
-    this.setState({ loading: true });
-
-    // check with backend API or with some static data
-    if (email !== VALID_EMAIL) {
-      errors.push('email');
-    }
-    if (password !== VALID_PASSWORD) {
-      errors.push('password');
-    }
-
-    this.setState({ errors, loading: false });
-
-    if (!errors.length) {
-      navigation.navigate("Browse");
-    }
+    fetch("http://localhost:3000/auth/sign_in",
+    {
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'email': email,
+        'password': password
+      })
+    }).then(response => response.json())
+    .then(responseJson => {
+     console.log(responseJson);
+    });
   }
 
   render() {
