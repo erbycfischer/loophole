@@ -5,22 +5,22 @@ class User
         @sock = socket
     end
 
-    @sock.onopen do | handshake |
+    def onopen(handshake)
         puts "WebSocket connection open"
       
         # Access properties on the EM::WebSocket::Handshake object, e.g.
         # path, query_string, origin, headers
       
         # Publish message to the client
-        ws.send "Hello Client, you connected to #{handshake.path}"
+        @sock.send "Hello Client, you connected to #{handshake.path}"
     end  
 
-    @sock.onclose do 
+    def onclose
         puts "Connection closed" 
     end
 
-    @sock.onmessage do |msg|
+    def onmessage(msg)
         puts "Recieved message: #{msg}"
-        ws.send "Pong: #{msg}"
+        @sock.send "Echo: #{msg}"
     end
 end
