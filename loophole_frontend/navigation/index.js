@@ -10,6 +10,7 @@ import Explore from '../screens/Explore';
 import Browse from '../screens/Browse';
 import Product from '../screens/Product';
 import Settings from '../screens/Settings';
+// import GettingStarted from '../screens/GettingStarted';
 
 import { theme } from '../constants';
 
@@ -30,7 +31,7 @@ const screens = createStackNavigator({
       borderBottomColor: "transparent",
       elevation: 0, // for android
     },
-    headerBackImage: <Image source={require('/Users/admin/Desktop/loophole/loophole_frontend/assets/icons/back.png')} />,
+    headerBackImage: <Image source={require('../assets/icons/back.png')} />,
     headerBackTitle: null,
     headerLeftContainerStyle: {
       alignItems: 'center',

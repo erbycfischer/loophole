@@ -10,7 +10,7 @@ const profile = {
     username: 'react-ui-kit',
     location: 'Europe',
     email: 'contact@react-ui-kit.com',
-    avatar: require('/Users/admin/Desktop/loophole/loophole_frontend/assets/images/avatar.png'),
+    avatar: require('../assets/images/avatar.png'),
     budget: 1000,
     monthly_cap: 5000,
     notifications: true,

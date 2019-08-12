@@ -10,7 +10,7 @@ import { Block } from './components';
 const images = [
   
 
-  require('/Users/admin/Desktop/loophole/loophole_frontend/assets/splash.png'),
+  require('./assets/splash.png'),
 ];
 
 export default class App extends React.Component {
