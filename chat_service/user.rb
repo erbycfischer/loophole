@@ -20,7 +20,7 @@ class User
     end
 
     def onmessage(msg)
-        puts "Recieved message: #{msg}"
+        puts "Recieved message: #{msg}\n\tfrom client: #{@sock}"
         @sock.send "Echo: #{msg}"
     end
 end

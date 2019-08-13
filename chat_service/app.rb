@@ -13,14 +13,14 @@ EM.run do
       @user = User.new(ws)
       $users[ws] = @user
       @user.onopen(handshake)
-    end
 
-    ws.onmessage do |msg|
-      @user.onmessage(msg)
-    end
-
-    ws.onclose do
-      @user.onclose()
+      ws.onmessage do |msg|
+        @user.onmessage(msg)
+      end
+  
+      ws.onclose do
+        @user.onclose()
+      end
     end
   end
 end
