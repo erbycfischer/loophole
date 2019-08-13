@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Dimensions, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-
+import { Dimensions, Image, StyleSheet, ScrollView, View, TouchableOpacity } from 'react-native'
+import { Input } from 'react-native-elements';
 import { Card, Badge, Button, Block, Text } from '../components';
 import { theme, mocks } from '../constants';
 
@@ -48,7 +48,7 @@ class Browse extends Component {
   render() {
     const { profile, navigation } = this.props;
     const { categories } = this.state;
-    const tabs = ['Info', 'Chat', 'Settings'];
+    // const tabs = ['Info', 'Chat', 'Settings'];
 
     return (
       <Block>
@@ -62,15 +62,45 @@ class Browse extends Component {
           </Button>
         </Block>
 
-        <Block flex={false} row style={styles.tabs}>
+        {/* <Block flex={false} row style={styles.tabs}>
           {tabs.map(tab => this.renderTab(tab))}
-        </Block>
+        </Block> */}
 
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{ paddingVertical: theme.sizes.base * 2}}
         >
+          <Block>
+         
+          <View>
+        
+          <ScrollView style={styles.container}>
+      <Text style= {{ fontSize: 40, fontWeight: "bold"}}>
+        User
+      </Text>
+      <Text>
+      Give a little info on the things you could use some help with 
+      </Text>
+      <Input placeholder="What lanuage do you speak?"/>
+    <Input placeholder="What lanuage you'd like to learn?"/>
+    <Input placeholder="First Name"/>
+    <Input placeholder="Last Name"/>
+    <Input placeholder="Age"/>
+    <Input placeholder="A issue you've been having?"/>
+    <Input placeholder="randon question"/>
+    <Input placeholder="Two Hobbies"/>
 
+        
+    </ScrollView>
+
+    <Button
+  onPress
+  title="Submit"
+  color="#3D348B"
+/>
+          
+        </View>
+          </Block>
         </ScrollView>
       </Block>
     )
@@ -82,7 +112,7 @@ Browse.defaultProps = {
   categories: mocks.categories,
 }
 
-export default Browse;
+export default Browse
 
 const styles = StyleSheet.create({
   header: {
