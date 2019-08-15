@@ -3,6 +3,8 @@ class User
 
     def initialize(socket)
         @sock = socket
+        @nick = ""
+        @count = 0
     end
 
     def onopen(handshake)
@@ -20,7 +22,13 @@ class User
     end
 
     def onmessage(msg)
-        puts "Recieved message: #{msg}\n\tfrom client: #{@sock}"
-        @sock.send "Echo: #{msg}"
+        #Write nick
+        if @count == 0
+            @nick = msg
+            @count += 1
+        else 
+            puts "Recieved message: #{msg}\n\tfrom client: #{@sock}\n\tnickname: #{@nick}"
+            @sock.send "#{@nick}: #{msg}"
+        end
     end
 end
