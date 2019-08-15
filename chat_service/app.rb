@@ -19,8 +19,8 @@ EM.run do
     ws.onmessage do |msg|
       current_user = 
         $users.find { |u|
-        u.sock == ws
-      }
+          u.sock == ws
+        }
       current_user.onmessage(msg)
     end
   
