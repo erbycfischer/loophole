@@ -1,4 +1,4 @@
-class Room
+class PrivateRoom
     attr_reader :user_one, :user_two
 
     def initialize(user_one, user_two)
