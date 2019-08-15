@@ -1,157 +1,234 @@
 import React, { Component } from 'react'
-import { Animated, Dimensions, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import { Animated, Dimensions, List, Image, StyleSheet, ListView, ScrollView, TouchableOpacity } from 'react-native'
 
 import { LinearGradient } from 'expo';
 
-import { Button, Input, Block, Text } from '../components';
+import { Button, Input, Block } from '../components';
 import { theme, mocks } from '../constants';
 
-const { width, height } = Dimensions.get('window');
+// const { width, height } = Dimensions.get('window');
+
+
+import { View, FlatList, ActivityIndicator } from 'react-native';
+import { ListItem, SearchBar } from 'react-native-elements';
 
 class Explore extends Component {
-  state = { 
-    searchFocus: new Animated.Value(0.6),
-    searchString: null,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+      data: [],
+      error: null,
+    };
+
+    this.arrayholder = [];
   }
 
+  componentDidMount() {
+    this.makeRemoteRequest();
+  }
 
+  makeRemoteRequest = () => {
+    const url = `https://randomuser.me/api/?&results=20`;
+    this.setState({ loading: true });
 
-  renderSearch() {
-    const { searchString, searchFocus } = this.state;
-    const isEditing = searchFocus && searchString;
+    fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          data: res.results,
+          error: res.error || null,
+          loading: false,
+        });
+        this.arrayholder = res.results;
+      })
+      .catch(error => {
+        this.setState({ error, loading: false });
+      });
+  };
 
+  renderSeparator = () => {
     return (
-      <Block animated middle flex={searchFocus} style={styles.search}>
-        {/* <Input
-          placeholder="Search"
-          placeholderTextColor={theme.colors.gray2}
-          style={styles.searchInput}
-          onFocus={() => this.handleSearchFocus(true)}
-          onBlur={() => this.handleSearchFocus(false)}
-          onChangeText={text => this.setState({ searchString: text })}
-          value={searchString}
-          onRightPress={() => isEditing ? this.setState({ searchString: null }) : null}
-          rightStyle={styles.searchRight}
-          rightLabel={
-            <Icon.FontAwesome
-              name={isEditing ? "close" : "search"}
-              size={theme.sizes.base / 1.6}
-              color={theme.colors.gray2}
-              style={styles.searchIcon}
-            />
-          } */}
-        />
-      </Block>
-    )
-  }
+      <View
+        style={{
+          height: 1,
+          width: '86%',
+          backgroundColor: '#CED0CE',
+          marginLeft: '14%',
+        }}
+      />
+    );
+  };
 
-  // renderImage(img, index) {
-  //   const { navigation } = this.props;
-  //   const sizes = Image.resolveAssetSource(img);
-  //   const fullWidth = width - (theme.sizes.padding * 2.5);
-  //   const resize = (sizes.width * 100) / fullWidth;
-  //   const imgWidth = resize > 75 ? fullWidth : sizes.width * 1;
+  searchFilterFunction = text => {
+    this.setState({
+      value: text,
+    });
 
-  //   return (
-  //     <TouchableOpacity
-  //       key={`img-${index}`}
-  //       onPress={() => navigation.navigate('Product')}
-  //     >
-        
-  //     </TouchableOpacity>
-  //   )
-  // }
+    const newData = this.arrayholder.filter(item => {
+      const itemData = `${item.name.title.toUpperCase()} ${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`;
+      const textData = text.toUpperCase();
 
-  
-  renderFooter() {
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      data: newData,
+    });
+  };
+
+  renderHeader = () => {
     return (
-      <LinearGradient
-        locations={[0.5, 1]}
-        style={styles.footer}
-        colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.6)']}
-      >
-        <Button gradient style={{ width: width / 2.678 }}>
-          <Text bold white center>Filter</Text>
-        </Button>
-      </LinearGradient>
-    )
-  }
+      <SearchBar
+        placeholder="Type Language Here"
+        lightTheme
+        round
+        onChangeText={text => this.searchFilterFunction(text)}
+        autoCorrect={false}
+        value={this.state.value}
+      />
+    );
+  };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ActivityIndicator />
+        </View>
+      );
+    }
     return (
-      <Block>
-        <Block flex={false} row center space="between" style={styles.header}>
-          <Text h1 center bold>Getting Started</Text>
-          {this.renderSearch()}
-        </Block>
-
-        {/* <ScrollView showsVerticalScrollIndicator={false} style={styles.explore}>
-          {this.renderExplore()}
-        </ScrollView> */}
-
-        {this.renderFooter()}
-      </Block>
-    )
+      <View style={{ flex: 1 }}>
+        <FlatList
+          data={this.state.data}
+          renderItem={({ item }) => (
+            <ListItem
+              leftAvatar={{ source: { uri: item.picture.thumbnail } }}
+              title={`${item.name.first} ${item.name.last}`}
+              subtitle={item.email}
+            />
+          )}
+          keyExtractor={item => item.email}
+          ItemSeparatorComponent={this.renderSeparator}
+          ListHeaderComponent={this.renderHeader}
+        />
+      </View>
+    );
   }
 }
 
-Explore.defaultProps = {
-  // images: mocks.explore,
-};
-
 export default Explore;
 
-const styles = StyleSheet.create({
-  header: {
-    paddingHorizontal: theme.sizes.base * 2,
-    paddingBottom: theme.sizes.base * 2
-  },
-  // search: {
-  //   height: theme.sizes.base * 2,
-  //   width: width - theme.sizes.base * 2,
-  // },
-  // searchInput: {
-  //   fontSize: theme.sizes.caption,
-  //   height: theme.sizes.base * 2,
-  //   backgroundColor: 'rgba(142, 142, 147, 0.06)',
-  //   borderColor: 'rgba(142, 142, 147, 0.06)',
-  //   paddingLeft: theme.sizes.base / 1.333,
-  //   paddingRight: theme.sizes.base * 1.5,
-  // },
-  // searchRight: {
-  //   top: 0,
-  //   marginVertical: 0,
-  //   backgroundColor: 'transparent'
-  // },
-  // searchIcon: {
-  //   position: 'absolute',
-  //   right: theme.sizes.base / 1.333,
-  //   top: theme.sizes.base / 1.6,
-  // },
-  // explore: {
-  //   marginHorizontal: theme.sizes.padding * 1.25,
-  // },
-  // image: {
-  //   minHeight: 100,
-  //   maxHeight: 130,
-  //   maxWidth: width - (theme.sizes.padding * 2.5),
-  //   marginBottom: theme.sizes.base,
-  //   borderRadius: 4,
-  // },
-  // mainImage: {
-  //   minWidth: width - (theme.sizes.padding * 2.5),
-  //   minHeight: width - (theme.sizes.padding * 2.5),
-  // },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    left: 0,
-    overflow: 'visible',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: height * 0.1,
-    width,
-    paddingBottom: theme.sizes.base * 4,
-  }
-})
+
+// class Explore extends Component {
+//     constructor() {
+//       super();
+//       const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+//       this.state = {
+//         dataSource: ds.cloneWithRows(['User image', 'row 2', 'row 3', 'row 4']),
+//       };
+//     }
+  
+//     render() {
+//       return (
+//         <ListView
+//           dataSource={this.state.dataSource}
+//           renderRow={(rowData) => <Text>{rowData}</Text>}
+//         />
+//       );
+//     }
+//   }
+// this.state = {
+//   loading: false,      
+//   data: [],      
+//   error: null,    
+// };
+
+// this.arrayholder = [];
+
+// makeRemoteRequest = () => {    
+//   const socket = io('http://localhost:8080');
+//   this.setState({ loading: true });
+  
+//   fetch(url)      
+//     .then(res => res.json())      
+//     .then(res => {        
+//       this.setState({          
+//         data: res.results,          
+//         error: res.error || null,          
+//         loading: false,        
+//       });        
+      
+//      this.arrayholder = res.results;      
+//    })      
+//    .catch(error => {        
+//      this.setState({ error, loading: false });      
+//    });  
+// };
+
+// renderHeader = () => {    
+//   return (      
+//     <SearchBar        
+//       placeholder="Type Here..."        
+//       lightTheme        
+//       round        
+//       onChangeText={text => this.searchFilterFunction(text)}
+//       autoCorrect={false}             
+//     />    
+//   );  
+// };
+
+// searchFilterFunction = text => {    
+//   const newData = this.arrayholder.filter(item => {      
+//     const itemData = `${item.name.title.toUpperCase()}   
+//     ${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`;
+    
+//      const textData = text.toUpperCase();
+      
+//      return itemData.indexOf(textData) > -1;    
+//   });
+  
+//   this.setState({ data: newData });  
+// };
+
+// <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+//   <FlatList          
+//     data={this.state.data}          
+//     renderItem={({ item }) => ( 
+//       <ListItem              
+//         roundAvatar              
+//         title={`${item.name.first} ${item.name.last}`}  
+//         subtitle={item.email}                           
+//         avatar={{ uri: item.picture.thumbnail }}   
+//         containerStyle={{ borderBottomWidth: 0 }} 
+//        />          
+//      )}          
+//      keyExtractor={item => item.email}  
+//      ItemSeparatorComponent={this.renderSeparator} 
+//      ListHeaderComponent={this.renderHeader}                             
+//   />            
+// </List>
+
+// export default Explore;
+
+
+
+// const styles = StyleSheet.create({
+//   header: {
+//     paddingHorizontal: theme.sizes.base * 2,
+//     paddingBottom: theme.sizes.base * 2
+//   },
+//   footer: {
+//     position: 'absolute',
+//     bottom: 0,
+//     right: 0,
+//     left: 0,
+//     overflow: 'visible',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     height: height * 0.1,
+//     width,
+//     paddingBottom: theme.sizes.base * 4,
+//   }
+// })

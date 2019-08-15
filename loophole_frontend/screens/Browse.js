@@ -1,10 +1,58 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Dimensions, Image, StyleSheet, ScrollView, View, TouchableOpacity } from 'react-native'
-import { Input } from 'react-native-elements';
-import { Card, Badge, Button, Block, Text } from '../components';
+import { Input, Button } from 'react-native-elements';
+import { Card, Badge, Block, Text } from '../components';
 import { theme, mocks } from '../constants';
+import SearchableDropdown from 'react-native-searchable-dropdown';
 
 const { width } = Dimensions.get('window');
+var items = [
+  {
+    id: 1,
+    name: 'Spanish',
+  },
+  {
+    id: 2,
+    name: 'English',
+  },
+  {
+    id: 3,
+    name: 'Arabic',
+  },
+  {
+    id: 5,
+    name: 'French',
+  },
+  {
+    id: 6,
+    name: 'Russian',
+  },
+  {
+    id: 7,
+    name: 'Portuguese',
+  },
+  {
+    id: 8,
+    name: 'German',
+  },
+  {
+    id: 9,
+    name: 'Japanese',
+  },
+  {
+    id: 10,
+    name: 'Chinese',
+  },
+];
+
+class Dropdown extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedItems: []
+    }
+  }
+}
 
 class Browse extends Component {
   state = {
@@ -52,12 +100,58 @@ class Browse extends Component {
 
     return (
       <Block>
+
+
+{/* Single */}
+<SearchableDropdown
+  onItemSelect={(item) => {
+    const items = this.state.selectedItems;
+    items.push(item)
+    this.setState({ selectedItems: items });
+  }}
+  containerStyle={{ padding: 5 }}
+  onRemoveItem={(item, index) => {
+    const items = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
+    this.setState({ selectedItems: items });
+  }}
+  itemStyle={{
+    padding: 10,
+    marginTop: 2,
+    backgroundColor: '#3D348B',
+    borderColor: '#B8B9BF',
+    borderWidth: 1,
+    borderRadius: 5,
+  }}
+  itemTextStyle={{ color: '#fff' }}
+  itemsContainerStyle={{ maxHeight: 140 }}
+  items={items}
+  defaultIndex={2}
+  resetValue={false}
+  textInputProps={
+    {
+      placeholder: "Select your lanuage..",
+      underlineColorAndroid: "transparent",
+      style: {
+          padding: 12,
+          borderWidth: 1,
+          borderColor: '#3D348B',
+          borderRadius: 5,
+      },
+      // onTextChange: text => alert(text)
+    }
+  }
+  listProps={
+    {
+      nestedScrollEnabled: true,
+    }
+  }
+/>
         <Block flex={false} row center space="between" style={styles.header}>
           <Text h1 bold>Getting Started</Text>
           <Button onPress={() => navigation.navigate('Settings')}>
             <Image
-              source={profile.avatar}
-              style={styles.avatar}
+              // source={profile.avatar}
+              // style={styles.avatar}
             />
           </Button>
         </Block>
@@ -86,16 +180,15 @@ class Browse extends Component {
     <Input placeholder="First Name"/>
     <Input placeholder="Last Name"/>
     <Input placeholder="Age"/>
-    <Input placeholder="A issue you've been having?"/>
-    <Input placeholder="randon question"/>
+    <Input placeholder="What's a issue you've been having?"/>
     <Input placeholder="Two Hobbies"/>
 
         
     </ScrollView>
 
     <Button
-  onPress
-  title="Submit"
+  onPress={() => navigation.navigate('Explore')}
+  title='Submit'
   color="#3D348B"
 />
           

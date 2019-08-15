@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules/**/*
 .expo/*
 npm-debug.*
@@ -9,3 +10,9 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
+=======
+.vscode/
+.vscode
+.DS_store
+.DS_Store
+>>>>>>> 0db1aaa07faff469c116ca1dfd7aa337dd05c717
