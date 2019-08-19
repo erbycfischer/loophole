@@ -187,7 +187,7 @@ class Browse extends Component {
     </ScrollView>
 
     <Button
-  onPress={() => navigation.navigate('Explore')}
+  onPress={() => navigation.navigate('Profile1')}
   title='Submit'
   color="#3D348B"
 />
