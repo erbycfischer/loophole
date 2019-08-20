@@ -12,6 +12,8 @@ import { theme, mocks } from '../constants';
 import { View, FlatList, ActivityIndicator } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
 
+var myLanguages = ['English', 'Hindustani', 'Spanish', 'Arabic', 'Mandarin Chinese', 'Portuguese', 'French', 'Russian'];
+
 class Explore extends Component {
   constructor(props) {
     super(props);
@@ -80,7 +82,7 @@ class Explore extends Component {
   renderHeader = () => {
     return (
       <SearchBar
-        placeholder="Type Language Here"
+        placeholder="Search here..."
         lightTheme
         round
         onChangeText={text => this.searchFilterFunction(text)}
@@ -106,10 +108,10 @@ class Explore extends Component {
             <ListItem
               leftAvatar={{ source: { uri: item.picture.thumbnail } }}
               title={`${item.name.first} ${item.name.last}`}
-              subtitle={item.email}
+              subtitle={myLanguages[Math.floor(Math.random() * myLanguages.length)]}
             />
           )}
-          keyExtractor={item => item.email}
+          keyExtractor={item => item.language}
           ItemSeparatorComponent={this.renderSeparator}
           ListHeaderComponent={this.renderHeader}
         />

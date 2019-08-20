@@ -11,6 +11,13 @@ import Browse from '../screens/Browse';
 import Product from '../screens/Product';
 import Settings from '../screens/Settings';
 import Profile1 from '../screens/Profile1';
+import Profile2 from '../screens/Profile2';
+import Profile3 from '../screens/Profile3';
+import Profile4 from '../screens/Profile4';
+import Profile5 from '../screens/Profile5';
+import Profile6 from '../screens/Profile6';
+
+
 
 import { theme } from '../constants';
 
@@ -24,6 +31,11 @@ const screens = createStackNavigator({
   Product,
   Settings,
   Profile1,
+  Profile2,
+  Profile3,
+  Profile4,
+  Profile5,
+  Profile6,
 }, {
   defaultNavigationOptions: {
     headerStyle: {
