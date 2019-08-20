@@ -11,6 +11,10 @@ import Browse from '../screens/Browse';
 import Product from '../screens/Product';
 import Settings from '../screens/Settings';
 import Profile1 from '../screens/Profile1';
+import GettingStarted from '../screens/GettingStarted';
+import Spanish from '../screens/Spanish'
+import English from '../screens/English'
+import French from '../screens/French'
 
 import { theme } from '../constants';
 
@@ -19,11 +23,15 @@ const screens = createStackNavigator({
   Login,
   SignUp,
   Forgot,
+  GettingStarted,
   Explore,
   Browse,
   Product,
   Settings,
   Profile1,
+  Spanish,
+  English,
+  French
 }, {
   defaultNavigationOptions: {
     headerStyle: {
