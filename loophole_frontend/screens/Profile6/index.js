@@ -6,8 +6,10 @@ import contactData from '../../mocks/contact6.json'
 import Profile6 from './Profile'
 
 const ProfileScreen6 = () => <Profile6 {...contactData} />
+// const { navigation } = () => this.props;
 
 ProfileScreen6.navigationOptions = () => ({
+
   header: null,
 })
 

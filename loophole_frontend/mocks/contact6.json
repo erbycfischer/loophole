@@ -32,7 +32,7 @@
     ],
     "emails": [
       { "id": 1, "name": "Email", "email": "astevens@aclce.org" },
-      { "id": 2, "name": "Chat", "email": "" }
+      { "id": 2, "name": "", "email": "" }
     ]
     }
   

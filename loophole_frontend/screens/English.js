@@ -26,7 +26,9 @@ export default class Brows extends Component {
     );
   }
   render(){
+    const { navigation } = this.props
   return (
+    
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={{ paddingVertical: theme.sizes.base * 2 }}
@@ -46,16 +48,18 @@ export default class Brows extends Component {
             <Input placeholder="Age" />
             <Input placeholder="City" />
             <Input placeholder="State" />
-            <Input placeholder="Favorite Hobby" />
+            <Input placeholder="Profession/Field" />
 
 
           </ScrollView>
+       
+    
 
           <Button
-            onPress={() => navigation.navigate('Explore')}
-            title='Submit'
-            color="#663399"
-          />
+  onPress={() => navigation.navigate('Profile6')}
+  title='Submit'
+
+/>
 
         </View>
       </Block>

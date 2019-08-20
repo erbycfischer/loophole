@@ -32,6 +32,7 @@ class Browse extends Component {
   render() {      
   
     const { navigation } = this.props
+    
     return (
       <View style={styles.container} >
         <Text style={styles.text} >Getting Started</Text>
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     width:'100%',
     height:'100%',
     flex:1,
-    backgroundColor:'#afeeee',
+    backgroundColor:'#fff',
     textAlign:'center',
     fontSize:24,
     flexDirection:"column",

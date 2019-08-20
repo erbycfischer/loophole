@@ -12,9 +12,9 @@ import Product from '../screens/Product';
 import Settings from '../screens/Settings';
 import Profile1 from '../screens/Profile1';
 import GettingStarted from '../screens/GettingStarted';
-import Spanish from '../screens/Spanish'
-import English from '../screens/English'
-import French from '../screens/French'
+import Spanish from '../screens/Spanish';
+import English from '../screens/English';
+import French from '../screens/French';
 import Profile2 from '../screens/Profile2';
 import Profile3 from '../screens/Profile3';
 import Profile4 from '../screens/Profile4';

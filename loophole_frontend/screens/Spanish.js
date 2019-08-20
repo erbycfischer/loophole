@@ -26,6 +26,7 @@ export default class Brows extends Component {
     );
   }
   render(){
+    const { navigation } = this.props
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}

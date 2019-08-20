@@ -5,6 +5,7 @@ import { Card, Badge, Block, Text } from '../components';
 import { theme, mocks } from '../constants';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
+
 const { width } = Dimensions.get('window');
 var items = [
   {
@@ -187,7 +188,7 @@ class Browse extends Component {
     </ScrollView>
 
     <Button
-  onPress={() => navigation.navigate('Profile6')}
+  onPress={() => navigation.navigate('Profile2')}
   title='Submit'
   color="#3D348B"
 />
