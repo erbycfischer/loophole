@@ -15,6 +15,13 @@ import GettingStarted from '../screens/GettingStarted';
 import Spanish from '../screens/Spanish'
 import English from '../screens/English'
 import French from '../screens/French'
+import Profile2 from '../screens/Profile2';
+import Profile3 from '../screens/Profile3';
+import Profile4 from '../screens/Profile4';
+import Profile5 from '../screens/Profile5';
+import Profile6 from '../screens/Profile6';
+
+
 
 import { theme } from '../constants';
 
@@ -31,7 +38,12 @@ const screens = createStackNavigator({
   Profile1,
   Spanish,
   English,
-  French
+  French,
+  Profile2,
+  Profile3,
+  Profile4,
+  Profile5,
+  Profile6,
 }, {
   defaultNavigationOptions: {
     headerStyle: {
