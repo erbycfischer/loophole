@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Animated, Dimensions, List, Image, StyleSheet, ListView, ScrollView, TouchableHighlight } from 'react-native'
+import { Animated, TouchableWithoutFeedback, Dimensions, List, Image, StyleSheet, ListView, ScrollView, TouchableHighlight } from 'react-native'
 
 import { LinearGradient } from 'expo';
 
@@ -103,15 +103,14 @@ class Explore extends Component {
     }
     return (
       <View style={{ flex: 1 }}>
-      
+        
         <FlatList
-          
           data={this.state.data}
           renderItem={({ item }) => (
-          
-            <ListItem
+            <ListItem button onPress={() =>navigation.navigate('Chat')}
               leftAvatar={{ source: { uri: item.picture.thumbnail } }}
               title={`${item.name.first} ${item.name.last}`}
+    
               subtitle={myLanguages[Math.floor(Math.random() * myLanguages.length)]}
             />
               
@@ -120,7 +119,7 @@ class Explore extends Component {
           ItemSeparatorComponent={this.renderSeparator}
           ListHeaderComponent={this.renderHeader}
         />
-      
+ 
       </View>
     );
   }

@@ -59,7 +59,7 @@ export default class Brows extends Component {
     
 
           <Button
-  onPress={() => this.props.navigation.navigate('Browse')}
+  onPress={() => this.props.navigation.navigate('Explore')}
   title='Submit'
 
 />
