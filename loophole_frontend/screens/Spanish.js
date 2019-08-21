@@ -53,7 +53,7 @@ export default class Brows extends Component {
           </ScrollView>
 
           <Button
-            onPress={() => navigation.navigate('Explore')}
+            onPress={() => navigation.navigate('Browse')}
             title='Enviar'
             color="#663399"
           />
