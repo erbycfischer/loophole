@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 import mainColor from './constants'
 
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

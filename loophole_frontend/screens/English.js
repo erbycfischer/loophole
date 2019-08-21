@@ -9,8 +9,11 @@ const { width } = Dimensions.get('window');
 
 
 export default class Brows extends Component {
-  state = {
-    location: null,
+  constructor(props){
+    super(props);
+    state = {
+      location: null,
+    }
   }
 
   componentDidMount() {
@@ -56,7 +59,7 @@ export default class Brows extends Component {
     
 
           <Button
-  onPress={() => navigation.navigate('Profile6')}
+  onPress={() => this.props.navigation.navigate('Chat')}
   title='Submit'
 
 />

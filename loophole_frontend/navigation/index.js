@@ -6,6 +6,7 @@ import Welcome from '../screens/Welcome';
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 import Forgot from '../screens/Forgot';
+import  Chat from '../screens/Chat';
 import Explore from '../screens/Explore';
 import Browse from '../screens/Browse';
 import Product from '../screens/Product';
@@ -20,6 +21,8 @@ import Profile3 from '../screens/Profile3';
 import Profile4 from '../screens/Profile4';
 import Profile5 from '../screens/Profile5';
 import Profile6 from '../screens/Profile6';
+import Profile from '/Users/student/Desktop/loophole/loophole_frontend/screens/Profile6/Profile.js';
+
 
 
 
@@ -44,6 +47,8 @@ const screens = createStackNavigator({
   Profile4,
   Profile5,
   Profile6,
+  Profile,
+  Chat,
 }, {
   defaultNavigationOptions: {
     headerStyle: {

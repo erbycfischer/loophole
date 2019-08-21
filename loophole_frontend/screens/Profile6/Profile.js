@@ -24,6 +24,7 @@ import Tel from './Tel'
 class Contact extends Component {
 constructor(props) {
     super(props);
+    this.onPressButton = this.onPressButton.bind(this);
   }
 
   static propTypes = {
@@ -175,10 +176,16 @@ constructor(props) {
     />
   )
 
-  
+  onPressButton() {
+    const { navigation } = this.props.navigation;
+  }
       
 
     render() {
+      navigate = () => {
+        this.props.navigation.navigate()
+      }
+
     return (
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
@@ -187,12 +194,12 @@ constructor(props) {
             {this.renderTel()}
             {Separator()}
             {this.renderEmail()}
-            <Button
-  // onPress={() => navigation.navigate('Explore')}
-  onPress={() => { this.props.navigation.navigate("Explore");}}
-  title='Chat'
-  color="#3D348B"
-/>
+            {/* <Button */}
+  {/* // onPress={() => navigation.navigate('Explore')}
+//   onPress={() => {this.props.navigation.navigate('Explore');}}
+//   title='Chat'
+//   color="#3D348B"
+// /> */}
           </Card>
         </View>
       </ScrollView>
