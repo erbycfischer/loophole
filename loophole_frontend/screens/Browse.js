@@ -38,7 +38,7 @@ class Browse extends Component {
         <Text style={styles.text} >Find the right help</Text>
           <ScrollView>
         
-          <Text style={{fontSize:18, textAlign:'center'}}>Select a thing</Text> 
+          <Text style={{fontSize:18, textAlign:'center'}}>Select an Organization</Text> 
           
          
           <Button style={{marginTop:14,}} title='The Jefferson County Medical Society' value='Profile1' onPress={()=>navigation.navigate('Profile1')} />
