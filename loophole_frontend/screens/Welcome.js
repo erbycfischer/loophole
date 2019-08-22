@@ -24,8 +24,8 @@ class Welcome extends Component {
           <Text h3 center bold>About the site...</Text>
 
           <ScrollView style={{ marginVertical: theme.sizes.padding }}>
-            <Text caption gray center height={24} style={{ marginBottom: theme.sizes.base }}>
-              Info.... Blah Blah Blah
+            <Text h3 gray center height={24} style={{ marginBottom: theme.sizes.base }}>
+            It’s a App that helps immigrants(or anyone) that wants/needs help learning a language or area. It also provides information and contact with non profit organizations that could help with, medical, housing, and law related issues.
             </Text>
 
           </ScrollView>
